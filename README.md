@@ -1,32 +1,48 @@
 # PostOps
 
-> Your social media team, in a box.
+Your social media team, in a box. Photos in. Posts out.
 
-Photos in. Posts out. AI writes the captions, picks the hashtags, and schedules it all for you.
+**Status:** v0 skeleton — landing page + photo-to-posts demo route. Full AI not yet wired.
 
-## What it does
+**Landing:** https://postops.vercel.app
 
-- **Photos to posts** — Drop a product photo. Get three on-brand captions in seconds.
-- **Always scheduled** — A full month of content, queued and ready, so you never miss a day.
-- **Learns what works** — Doubles down on what your audience actually engages with.
+---
 
-## Why
+## Stack
 
-Small business. Part of a 20-product exploration of high-demand consumer and SMB markets.
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-## Status
+## Run locally
 
-Landing page live. Product in planning.
+```bash
+pnpm install
+pnpm dev
+```
 
-- **Live**: https://mukundakatta.github.io/postops/
+Open http://localhost:3000.
 
-## Stack (when built)
+## Deploy
 
-- Next.js 16 (App Router)
-- Supabase for auth + data
-- Stripe for payments
-- Deployed on Vercel
+Push to `main` — Vercel picks it up automatically. No environment variables required.
 
-## Local preview
+## Routes
 
-Just open `index.html` in a browser — it is a static landing page with the Tailwind CDN.
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | v0 demo — upload 3 photos + event description → 3 mocked social-post drafts (IG, Twitter, LinkedIn) |
+| `/api/waitlist` | `POST { email }` → forwards to waitlist-api-sigma |
+
+## What's next
+
+- Wire real AI (caption generation + hashtag selection) behind `/try`
+- Direct social publishing (Instagram Graph API, Twitter v2, LinkedIn)
+- Scheduling queue and calendar view
+- Auth + per-user brand voice settings
